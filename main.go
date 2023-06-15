@@ -12,8 +12,7 @@ func main() {
 	kubeconfig := flag.String("kubeconfig", "/home/user/.kube/config", "location to your kubeconfig file")
 	config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
 	if err != nil {
-		// handle error
-		fmt.Printf("erorr %s building config from flags\n", err.Error())
+		fmt.Printf("error %s building config from flags\n", err.Error())
 		config, err = rest.InClusterConfig()
 		if err != nil {
 			fmt.Printf("error %s, getting inclusterconfig", err.Error())
@@ -21,7 +20,6 @@ func main() {
 	}
 	clientset, err := kubernetes.NewForConfig(config)
 	if err != nil {
-		// handle error
 		fmt.Printf("error %s, creating clientset\n", err.Error())
 	}
 	fmt.Println(clientset)
